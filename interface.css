@@ -21,3 +21,25 @@ button:active {
   float: left;
   width: 50%;
 }
+.monster{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:auto;
+    height:300px;
+    padding: 50px;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    background: #ffffff; 
+    padding: 20px;
+
+  
+
+}
+.monster:hover {
+    cursor: url('./Images/Sword.cur');
+    background-color: #FF0000;
+   
+}
