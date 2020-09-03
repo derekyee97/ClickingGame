@@ -5,6 +5,10 @@ var baseMonsterHP=20
 var monsterHealth=20
 var monsterPoints=0
 var baseMonsterPoints=15
+
+var imgCounter=2
+var maxImages=5
+
 var resources = {"gold ":0,"pickaxe":1}
 var costs = {"pickaxe":15,
 	     "miner":200,
@@ -30,35 +34,28 @@ function hurtMonster(num)
 		updateNewMonsterHealth(baseMonsterHP)
 		newMonsterPicture() 
 		monsterPoints+=baseMonsterPoints
-		baseMonsterPoints *= growthRate["monsterPoint_rate"]
-		//costs["base_gold"]=costs["base_gold"]*growthRate["gold_rate"]
+		baseMonsterPoints=Math.round(baseMonsterPoints*growthRate["monsterPoint_rate"])
+		
 	}
 	updateText()
 };
 function updateNewMonsterHealth(baseHealth)
 {
-	monsterHealth=baseHealth*1.25
-	//baseMonsterHP=baseHealth+baseHealth*1.25
+	monsterHealth=Math.round(baseHealth*1.25)
 	baseMonsterHP *= growthRate["monster_hp"]
-
+	baseMonsterHP=Math.round(baseMonsterHP*growthRate["monster_hp"])
 };
 
-function newMonsterPicture(){
-	if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster1.jpg"){
-        document.getElementById("imgChange").src = "./Images/monster2.jpg";
-    }
-    else if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster2.jpg"){
-        document.getElementById("imgChange").src = "./Images/monster3.jpg";
-    }
-    else if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster3.jpg"){
-        document.getElementById("imgChange").src = "./Images/monster4.jpg";
-    }
-  	else if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster4.jpg"){
-        document.getElementById("imgChange").src = "./Images/monster5.jpg";
-    }
-    else if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster5.jpg"){
-        document.getElementById("imgChange").src = "./Images/monster1.jpg";
-    }
+function newMonsterPicture()
+{
+	if(imgCounter>maxImages)
+	{
+		imgCounter=1
+
+	}
+	document.getElementById("imgChange").src = "./Images/monster"+imgCounter.toString(10)+".jpg";
+	imgCounter+=1 
+
 };
 
 function mineGold(num){
