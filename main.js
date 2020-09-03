@@ -28,10 +28,9 @@ function hurtMonster(num)
 	if (monsterHealth<=0)
 	{
 		updateNewMonsterHealth(baseMonsterHP)
-		//newMonsterPicture() 
+		newMonsterPicture() 
 		monsterPoints+=baseMonsterPoints
 		baseMonsterPoints *= growthRate["monsterPoint_rate"]
-
 		//costs["base_gold"]=costs["base_gold"]*growthRate["gold_rate"]
 	}
 	updateText()
@@ -41,7 +40,27 @@ function updateNewMonsterHealth(baseHealth)
 	monsterHealth=baseHealth*1.25
 	//baseMonsterHP=baseHealth+baseHealth*1.25
 	baseMonsterHP *= growthRate["monster_hp"]
+
 };
+
+function newMonsterPicture(){
+	if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster1.jpg"){
+        document.getElementById("imgChange").src = "./Images/monster2.jpg";
+    }
+    else if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster2.jpg"){
+        document.getElementById("imgChange").src = "./Images/monster3.jpg";
+    }
+    else if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster3.jpg"){
+        document.getElementById("imgChange").src = "./Images/monster4.jpg";
+    }
+  	else if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster4.jpg"){
+        document.getElementById("imgChange").src = "./Images/monster5.jpg";
+    }
+    else if (document.getElementById("imgChange").getAttribute('src') == "./Images/monster5.jpg"){
+        document.getElementById("imgChange").src = "./Images/monster1.jpg";
+    }
+};
+
 function mineGold(num){
     resources["gold"] += num*resources["pickaxe"]
     updateText()
@@ -155,3 +174,16 @@ window.setInterval(function(){
   
 
 }, tickRate);
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+};
+
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+};
