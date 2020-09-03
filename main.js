@@ -3,6 +3,8 @@ var tickRate = 16
 var visualRate = 256
 var baseMonsterHP=20
 var monsterHealth=20
+var monsterPoints=1
+var baseMonsterPoints=15
 var resources = {"gold ":0,"pickaxe":1}
 var costs = {"pickaxe":15,
 	     "miner":200,
@@ -11,7 +13,7 @@ var growthRate = {"pickaxe":1.25,
 		  "miner":1.25,
 	     "miner_pickaxe":1.75,
 	 	 "monster_hp":1.25,
-	 	 "gold_rate":1.25}
+	 	 "monsterPoint_rate":1.25}
 
 var increments = [{"input":["miner","miner_pickaxe"],
 		   "output":"gold"}]
@@ -19,14 +21,17 @@ var increments = [{"input":["miner","miner_pickaxe"],
 var unlocks = {"pickaxe":{"gold":10},
 	       "miner":{"gold":100},
 	       "miner_pickaxe":{"miner":1}}
-function hurtMonster(num){
+function hurtMonster(num)
+{
 	monsterHealth-=num
 	
-	resources["gold"]+=
 	if (monsterHealth<=0)
 	{
 		updateNewMonsterHealth(baseMonsterHP)
-		newMonsterPicture() 
+		//newMonsterPicture() 
+		monsterPoints+=baseMonsterPoints
+		baseMonsterPoints *= growthRate["monsterPoint_rate"]
+		//costs["base_gold"]=costs["base_gold"]*growthRate["gold_rate"]
 	}
 	updateText()
 };
@@ -118,6 +123,10 @@ function updateText()
   	for (var element of document.getElementsByClassName("monster_health"))
   	{
   		element.innerHTML = monsterHealth.toFixed(2)
+  	}
+  	for (var element of document.getELementsByClassName("monster_currency"))
+  	{
+  		element.innerHTML = monsterPoints.toFixed(2)
   	}
 };
 
