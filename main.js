@@ -1,13 +1,16 @@
 var timer = 256
 var tickRate = 16
 var visualRate = 256
+var baseMonsterHP=1
 var resources = {"gold":0,"pickaxe":1}
+var monsterHealth=1
 var costs = {"pickaxe":15,
 	     "miner":200,
 	     "miner_pickaxe":15}
 var growthRate = {"pickaxe":1.25,
 		  "miner":1.25,
-	     "miner_pickaxe":1.75}
+	     "miner_pickaxe":1.75,
+	 	 "monster_hp":1.25}
 
 var increments = [{"input":["miner","miner_pickaxe"],
 		   "output":"gold"}]
@@ -15,7 +18,21 @@ var increments = [{"input":["miner","miner_pickaxe"],
 var unlocks = {"pickaxe":{"gold":10},
 	       "miner":{"gold":100},
 	       "miner_pickaxe":{"miner":1}}
-
+function hurtMonster(num){
+	monsterHealth-=num
+	
+	if (monsterHealth<=0)
+	{
+		updateNewMonsterHealth(baseMonsterHP)
+		//newMonsterPicture() 
+	}
+	updateText()
+};
+function updateNewMonsterHealth(baseHealth)
+{
+	monsterHealth=baseHealth*1.25
+	baseMonsterHP=baseHealth+baseHealth*1.25
+};
 function mineGold(num){
     resources["gold"] += num*resources["pickaxe"]
     updateText()
@@ -63,29 +80,42 @@ function hireMiner(num){
 
 
 
-function updateText(){
-    for (var key in unlocks){
-	var unlocked = true
-	for (var criterion in unlocks[key]){
-	    unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
-	}
-	if (unlocked){
-	    for (var element of document.getElementsByClassName("show_"+key)){		
-		element.style.display = "block"
-	    }
-	}
+function updateText()
+{
+    for (var key in unlocks)
+    {
+		var unlocked = true
+		for (var criterion in unlocks[key])
+		{
+	    	unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
+		}
+		if (unlocked)
+		{
+	    	for (var element of document.getElementsByClassName("show_"+key))
+	    	{		
+				element.style.display = "block"
+	    	}
+		}
     }
     
-    for (var key in resources){
-	 for (var element of document.getElementsByClassName(key)){
-	    element.innerHTML = resources[key].toFixed(2)
-	}
+    for (var key in resources)
+    {
+		for (var element of document.getElementsByClassName(key))
+	 	{
+	   		element.innerHTML = resources[key].toFixed(2)
+		}
     }
-    for (var key in costs){
-	for (var element of document.getElementsByClassName(key+"_cost")){
+    for (var key in costs)
+    {
+		for (var element of document.getElementsByClassName(key+"_cost"))
+		{
 	    element.innerHTML = costs[key].toFixed(2)
-	}
+		}
     }
+  	for (var element of document.getElementsByClassName("monster_health"))
+  	{
+  		element.innerHTML = monsterHealth.toFixed(2)
+  	}
 };
 
 
