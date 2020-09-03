@@ -1,16 +1,17 @@
 var timer = 256
 var tickRate = 16
 var visualRate = 256
-var baseMonsterHP=1
-var resources = {"gold":0,"pickaxe":1}
-var monsterHealth=1
+var baseMonsterHP=20
+var monsterHealth=20
+var resources = {"gold ":0,"pickaxe":1}
 var costs = {"pickaxe":15,
 	     "miner":200,
 	     "miner_pickaxe":15}
 var growthRate = {"pickaxe":1.25,
 		  "miner":1.25,
 	     "miner_pickaxe":1.75,
-	 	 "monster_hp":1.25}
+	 	 "monster_hp":1.25,
+	 	 "gold_rate":1.25}
 
 var increments = [{"input":["miner","miner_pickaxe"],
 		   "output":"gold"}]
@@ -21,17 +22,19 @@ var unlocks = {"pickaxe":{"gold":10},
 function hurtMonster(num){
 	monsterHealth-=num
 	
+	resources["gold"]+=
 	if (monsterHealth<=0)
 	{
 		updateNewMonsterHealth(baseMonsterHP)
-		//newMonsterPicture() 
+		newMonsterPicture() 
 	}
 	updateText()
 };
 function updateNewMonsterHealth(baseHealth)
 {
 	monsterHealth=baseHealth*1.25
-	baseMonsterHP=baseHealth+baseHealth*1.25
+	//baseMonsterHP=baseHealth+baseHealth*1.25
+	baseMonsterHP *= growthRate["monster_hp"]
 };
 function mineGold(num){
     resources["gold"] += num*resources["pickaxe"]
