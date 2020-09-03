@@ -3,7 +3,7 @@ var tickRate = 16
 var visualRate = 256
 var baseMonsterHP=20
 var monsterHealth=20
-var monsterPoints=1
+var monsterPoints=0
 var baseMonsterPoints=15
 var resources = {"gold ":0,"pickaxe":1}
 var costs = {"pickaxe":15,
@@ -31,6 +31,7 @@ function hurtMonster(num)
 		//newMonsterPicture() 
 		monsterPoints+=baseMonsterPoints
 		baseMonsterPoints *= growthRate["monsterPoint_rate"]
+
 		//costs["base_gold"]=costs["base_gold"]*growthRate["gold_rate"]
 	}
 	updateText()
@@ -122,11 +123,11 @@ function updateText()
     }
   	for (var element of document.getElementsByClassName("monster_health"))
   	{
-  		element.innerHTML = monsterHealth.toFixed(2)
+  		element.innerHTML = monsterHealth
   	}
-  	for (var element of document.getELementsByClassName("monster_currency"))
+  	for (var element of document.getElementsByClassName("monster_points"))
   	{
-  		element.innerHTML = monsterPoints.toFixed(2)
+  		element.innerHTML = monsterPoints
   	}
 };
 
