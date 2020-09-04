@@ -1,3 +1,7 @@
+body{
+    background: #F0F8FF;
+    padding-left: 100px;
+}
 button {
     background-color: #FFFFFF; 
     border: none;
@@ -39,7 +43,7 @@ button:active {
 
 }
 .monster:hover {
-    cursor: url('./Images/Sword.cur');
+    cursor: url('./Images/Sword.cur'), auto;
     background-color: #FF0000;
    
 }
@@ -56,14 +60,6 @@ button:active {
   margin: 4px 2px;
   cursor: pointer;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.navbar a {
-  float: right;
-  font-size: 16px;
-  color: black;
-  text-align: center;
-  text-decoration: none;
 }
 
 .dropdown {
@@ -111,4 +107,15 @@ button:active {
 
 .show {
   display: block;
+}
+
+.Store{
+    padding-left: : 100px;
+    padding-bottom: 50px;
+    float: right;
+}
+.information{
+    padding-right: 100px;
+    padding-bottom: 50px;
+    float:left;
 }

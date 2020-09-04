@@ -6,25 +6,24 @@
   <body>
     <script type="text/javascript" src="main.js"></script>
     <div class="row">
-        <div class="column">
+        <div class="information">
     		Monster Health Points: <span class="monster_health"></span> <br>
     		Monster Points: <span class="monster_points"></span> 
-    		
-      <div class="column">
-
-    <div class="navbar">
-  <div class="dropdown" float: right>
-    <button class="dropbtn" onclick="myFunction()">Dropdown
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content" id="myDropdown">
-        <button class="show_pickaxe" onClick="upgradeSword(1)"> Sword: MP <span class="sword_cost"></span></button> 
-        <button class="show_miner" onClick="hireWarrior(1)">warriors: MP <span class="warrior_cost"></span></button>
-        <button class="show_miner" onClick="upgradeMinerPickaxe(1)">Dynamite: $<span class="miner_pickaxe_cost"></span>
-        <button class="show_miner" onClick="upgradeMinerPickaxe(1)">Bombs: $<span class="miner_pickaxe_cost"></span>  
-    </div>
-  </div> 
-  </div>
+        <div class="Store">
+          <div class="navbar">
+            <div class="dropdown" float: right>
+              <button class="dropbtn" onclick="myFunction()">Dropdown
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content" id="myDropdown">
+                  <button class="show_pickaxe" onClick="upgradeSword(1)"> Sword: MP <span class="sword_cost"></span></button> 
+                  <button class="show_miner" onClick="hireWarrior(1)">warriors: MP <span class="warrior_cost"></span></button>
+                  <button class="show_miner" onClick="upgradeMinerPickaxe(1)">Dynamite: $<span class="miner_pickaxe_cost"></span> </button>
+                  <button class="show_miner" onClick="upgradeMinerPickaxe(1)">Bombs: $<span class="miner_pickaxe_cost"></span>  </button>
+              </div>
+            </div> 
+         </div>
+     </div>
 
  <!--
 	<button onClick="mineGold(1)">Mine Gold</button>
@@ -32,9 +31,8 @@
 	<button style="display:none" class="show_miner" onClick="hireMiner(1)">Hire Miners: $<span class="miner_cost"></span></button>
 	<button style="display:none" class="show_miner" onClick="upgradeMinerPickaxe(1)">Upgrade Miners' Pickaxes: $<span class="miner_pickaxe_cost"></span></button>
   -->
-  
       <div class="monsterHolder">
-      	<img src="./Images/monster1.jpg" alt="pic of monster" class="monster" id="imgChange"
+      	<img src="./Images/monster1.jpg" alt="pic of monster" class="monster" id="imgChange" width="70" height="70" 
       	onCLick="hurtMonster(1)"> 
       </div>
 
