@@ -9,25 +9,27 @@ var baseMonsterPoints=15
 var imgCounter=2
 var maxImages=5
 
-var resources = {"gold ":0,"pickaxe":1}
+var resources = {"gold ":0,"pickaxe":1,"sword":1}
 var costs = {"pickaxe":15,
-	     "miner":200,
-	     "miner_pickaxe":15}
+	     "warrior":10,
+	     "miner_pickaxe":15,
+	 	 "sword":15}
 var growthRate = {"pickaxe":1.25,
-		  "miner":1.25,
+		  "warrior":1.30,
 	     "miner_pickaxe":1.75,
 	 	 "monster_hp":1.25,
-	 	 "monsterPoint_rate":1.25}
+	 	 "monsterPoint_rate":1.25,
+	 	 "sword":1.20}
 
-var increments = [{"input":["miner","miner_pickaxe"],
+var increments = [{"input":["warrior","miner_pickaxe"],
 		   "output":"gold"}]
 
-var unlocks = {"pickaxe":{"gold":10},
-	       "miner":{"gold":100},
-	       "miner_pickaxe":{"miner":1}}
+// var unlocks = {"pickaxe":{"gold":10},
+// 	       "miner":{"gold":100},
+// 	       "miner_pickaxe":{"miner":1}}
 function hurtMonster(num)
 {
-	monsterHealth-=num
+	monsterHealth-=num*resources["sword"]
 	
 	if (monsterHealth<=0)
 	{
@@ -58,11 +60,6 @@ function newMonsterPicture()
 
 };
 
-function mineGold(num){
-    resources["gold"] += num*resources["pickaxe"]
-    updateText()
-};
-
 function upgradeMinerPickaxe(num){
     if (resources["gold"] >= costs["miner_pickaxe"]*num){
 	resources["miner_pickaxe"] += num
@@ -74,6 +71,15 @@ function upgradeMinerPickaxe(num){
     }
 };
 
+function upgradeSword(num){
+	if(monsterPoints >= costs["sword"])
+	{
+		resources["sword"]+=num 
+		monsterPoints=Math.round(monsterPoints-num*costs["sword"])
+		costs["sword"] =Math.round(costs["sword"]*growthRate["sword"])
+		updateText()
+	}
+};
 function upgradePickaxe(num){
     if (resources["gold"] >= costs["pickaxe"]*num){
 	resources["pickaxe"] += num
@@ -102,26 +108,43 @@ function hireMiner(num){
 	
     }
 };
-
+function hireWarrior(num)
+{
+	if(monsterPoints >= costs["warrior"])
+	{
+		if(!resources["warrior"])
+		{
+			resources["warrior"]=0
+		}
+		if(!resources["miner_pickaxe"])
+		{
+			resources["miner_pickaxe"]=1
+		}
+		resources["warrior"]+=num
+		monsterPoints-=costs["warrior"]
+		costs["warrior"] *= growthRate["warrior"]
+		updateText()
+	}
+};
 
 
 function updateText()
 {
-    for (var key in unlocks)
-    {
-		var unlocked = true
-		for (var criterion in unlocks[key])
-		{
-	    	unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
-		}
-		if (unlocked)
-		{
-	    	for (var element of document.getElementsByClassName("show_"+key))
-	    	{		
-				element.style.display = "block"
-	    	}
-		}
-    }
+  //   for (var key in unlocks)
+  //   {
+		// var unlocked = true
+		// for (var criterion in unlocks[key])
+		// {
+	 //    	unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
+		// }
+		// if (unlocked)
+		// {
+	 //    	for (var element of document.getElementsByClassName("show_"+key))
+	 //    	{		
+		// 		element.style.display = "block"
+	 //    	}
+		// }
+  //   }
     
     for (var key in resources)
     {
@@ -139,6 +162,7 @@ function updateText()
     }
   	for (var element of document.getElementsByClassName("monster_health"))
   	{
+  		monsterHealth=Math.round(monsterHealth)
   		element.innerHTML = monsterHealth
   	}
   	for (var element of document.getElementsByClassName("monster_points"))
@@ -148,25 +172,31 @@ function updateText()
 };
 
 
-window.setInterval(function(){
+window.setInterval(function()
+{
     timer += tickRate
 
-    
-    for (var increment of increments){
-	total = 1
-	for (var input of increment["input"]){
-	    total *= resources[input]
-	    
+    for (var increment of increments)
+    {
+		total = 1
+		for (var input of increment["input"])
+		{
+		    total *= resources[input]
+		    
+		}
+		if (total)
+		{
+		    
+		    monsterHealth -=total/tickRate
+		    document.write(monsterHealh)
+		}
 	}
-	if (total){
-	    console.log(total)
-	    resources[increment["output"]] += total/tickRate
-	}
-    }
     
-    if (timer > visualRate){
-	timer -= visualRate
-	updateText()
+    if (timer > visualRate)
+    {
+		timer -= visualRate
+
+		updateText()
     }
   
 
