@@ -7,11 +7,11 @@ var monsterPoints=0
 var baseMonsterPoints=15
 
 var imgCounter=2
-var maxImages=5
+var maxImages=9
 
 var resources = {"gold ":0,"pickaxe":1,"sword":1}
 var costs = {"pickaxe":15,
-	     "warrior":10,
+	     "warrior":15,
 	     "miner_pickaxe":15,
 	 	 "sword":15}
 var growthRate = {"pickaxe":1.25,
@@ -90,24 +90,7 @@ function upgradePickaxe(num){
 	updateText()
     }
 };
-function hireMiner(num){
-    if (resources["gold"] >= costs["miner"]*num){
-	if (!resources["miner"]){
-	    resources["miner"] = 0
-	}
-	if (!resources["miner_pickaxe"]){
-	    resources["miner_pickaxe"] = 1
-	}
-	resources["miner"] += num
-	resources["gold"] -= num*costs["miner"]
-	
-	costs["miner"] *= growthRate["miner"]
-	
-	updateText()
 
-	
-    }
-};
 function hireWarrior(num)
 {
 	if(monsterPoints >= costs["warrior"])
@@ -122,7 +105,7 @@ function hireWarrior(num)
 		}
 		resources["warrior"]+=num
 		monsterPoints-=costs["warrior"]
-		costs["warrior"] *= growthRate["warrior"]
+		costs["warrior"] = Math.round(costs["warrior"]*growthRate["warrior"])
 		updateText()
 	}
 };
@@ -174,7 +157,7 @@ function updateText()
 
 window.setInterval(function()
 {
-    timer += tickRate
+    timer += 1000
 
     for (var increment of increments)
     {
@@ -187,8 +170,9 @@ window.setInterval(function()
 		if (total)
 		{
 		    
-		    monsterHealth -=total/tickRate
-		    document.write(monsterHealh)
+		   hurtMonster(resources["warrior"])
+		   
+		    
 		}
 	}
     
@@ -200,7 +184,7 @@ window.setInterval(function()
     }
   
 
-}, tickRate);
+}, 1000);
 
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
