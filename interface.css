@@ -25,6 +25,7 @@ button:active {
   float: left;
   width: 50%;
 }
+
 .monster{
     display: block;
     margin-left: auto;
@@ -118,4 +119,12 @@ button:active {
     padding-right: 100px;
     padding-bottom: 50px;
     float:left;
+}
+
+.monsterHolder img {
+    width:  500px;
+    height: 500px;
+    object-fit: cover;
+    background: transparent;
+    object-fit: contain;
 }

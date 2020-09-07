@@ -55,7 +55,7 @@ function newMonsterPicture()
 		imgCounter=1
 
 	}
-	document.getElementById("imgChange").src = "./Images/monster"+imgCounter.toString(10)+".jpg";
+	document.getElementById("imgChange").src = "./Images/monster"+imgCounter.toString(10)+".png";
 	imgCounter+=1 
 
 };
