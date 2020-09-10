@@ -1,6 +1,10 @@
 body{
-    background: #F0F8FF;
+    background-image: url("./Images/backgroundImage.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
     padding-left: 100px;
+
 }
 button {
     background-color: #FFFFFF; 

@@ -9,17 +9,21 @@ var baseMonsterPoints=15
 var imgCounter=2
 var maxImages=9
 
-var resources = {"gold ":0,"pickaxe":1,"sword":1}
+
+
+var resources = {"gold ":0,"pickaxe":1,"sword":1,"warrior":0,"warrior_weapon_level":0}
 var costs = {"pickaxe":15,
 	     "warrior":15,
 	     "miner_pickaxe":15,
-	 	 "sword":15}
+	 	 "sword":15,
+	 	 "warrior_weapon":15}
 var growthRate = {"pickaxe":1.25,
 		  "warrior":1.30,
 	     "miner_pickaxe":1.75,
 	 	 "monster_hp":1.25,
 	 	 "monsterPoint_rate":1.25,
-	 	 "sword":1.20}
+	 	 "sword":1.20,
+	 	 "warrior_weapon":1.30}
 
 var increments = [{"input":["warrior","miner_pickaxe"],
 		   "output":"gold"}]
@@ -60,17 +64,6 @@ function newMonsterPicture()
 
 };
 
-function upgradeMinerPickaxe(num){
-    if (resources["gold"] >= costs["miner_pickaxe"]*num){
-	resources["miner_pickaxe"] += num
-	resources["gold"] -= num*costs["miner_pickaxe"]
-	
-	costs["miner_pickaxe"] *= growthRate["miner_pickaxe"]
-	
-	updateText()
-    }
-};
-
 function upgradeSword(num){
 	if(monsterPoints >= costs["sword"])
 	{
@@ -80,25 +73,13 @@ function upgradeSword(num){
 		updateText()
 	}
 };
-function upgradePickaxe(num){
-    if (resources["gold"] >= costs["pickaxe"]*num){
-	resources["pickaxe"] += num
-	resources["gold"] -= num*costs["pickaxe"]
-	
-	costs["pickaxe"] *= growthRate["pickaxe"]
-	
-	updateText()
-    }
-};
+
 
 function hireWarrior(num)
 {
 	if(monsterPoints >= costs["warrior"])
 	{
-		if(!resources["warrior"])
-		{
-			resources["warrior"]=0
-		}
+		
 		if(!resources["miner_pickaxe"])
 		{
 			resources["miner_pickaxe"]=1
@@ -106,11 +87,28 @@ function hireWarrior(num)
 		resources["warrior"]+=num
 		monsterPoints-=costs["warrior"]
 		costs["warrior"] = Math.round(costs["warrior"]*growthRate["warrior"])
+		if(resources["warrior"]==1)
+		{
+			resources["warrior_weapon_level"]=1
+		}
 		updateText()
 	}
 };
 
-
+function upgradeWarriorWeapon(num)
+{
+	if(resources["warrior"]==0)
+	{
+		return
+	}
+	if(monsterPoints >= costs["warrior_weapon"])
+	{
+		resources["warrior_weapon_level"]+=num
+		monsterPoints-=costs["warrior_weapon"]
+		costs["warrior_weapon"]=Math.round(costs["warrior"]*growhRate["warrior_weapon"])
+	}
+	updateText()
+}
 function updateText()
 {
   //   for (var key in unlocks)
@@ -169,8 +167,16 @@ window.setInterval(function()
 		}
 		if (total)
 		{
-		    
-		   hurtMonster(resources["warrior"])
+		   
+		   if(resources["warrior_weapon_level"]==0)
+		   {
+		   		hurtMonster(resources["warrior"])
+		   } 
+		   else
+		   {
+		   		hurtMonster(resources["warrior"]*resources["warrior_weapon_level"])
+		   }
+		   
 		   
 		    
 		}
