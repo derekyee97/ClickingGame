@@ -7,7 +7,7 @@ var monsterPoints=0
 var baseMonsterPoints=15
 
 var imgCounter=2
-var maxImages=9
+var maxImages=6
 
 
 
@@ -34,6 +34,20 @@ var increments = [{"input":["warrior","miner_pickaxe"],
 function hurtMonster(num)
 {
 	monsterHealth-=num*resources["sword"]
+	
+	if (monsterHealth<=0)
+	{
+		updateNewMonsterHealth(baseMonsterHP)
+		newMonsterPicture() 
+		monsterPoints+=baseMonsterPoints
+		baseMonsterPoints=Math.round(baseMonsterPoints*growthRate["monsterPoint_rate"])
+		
+	}
+	updateText()
+};
+function hurtMonsterWarrior(num)
+{
+	monsterHealth-=num
 	
 	if (monsterHealth<=0)
 	{
@@ -111,21 +125,6 @@ function upgradeWarriorWeapon(num)
 }
 function updateText()
 {
-  //   for (var key in unlocks)
-  //   {
-		// var unlocked = true
-		// for (var criterion in unlocks[key])
-		// {
-	 //    	unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
-		// }
-		// if (unlocked)
-		// {
-	 //    	for (var element of document.getElementsByClassName("show_"+key))
-	 //    	{		
-		// 		element.style.display = "block"
-	 //    	}
-		// }
-  //   }
     
     for (var key in resources)
     {
@@ -174,7 +173,8 @@ window.setInterval(function()
 		   } 
 		   else
 		   {
-		   		hurtMonster(resources["warrior"]*resources["warrior_weapon_level"])
+		   		hurtMonsterWarrior(resources["warrior"]*resources["warrior_weapon_level"])
+		   		
 		   }
 		   
 		   
