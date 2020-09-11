@@ -7,7 +7,7 @@ var monsterPoints=0
 var baseMonsterPoints=15
 
 var imgCounter=2
-var maxImages=6
+var maxImages=15
 
 var bombDamage=100
 
@@ -74,12 +74,15 @@ function newMonsterPicture()
 	if(imgCounter>maxImages)
 	{
 		imgCounter=1
-
+	}
+	else if(imgCounter == 2){
+		window.setTimeout("document.getElementById('Bamb').style.visibility='show';", 3000)
 	}
 	document.getElementById("imgChange").src = "./Images/monster"+imgCounter.toString(10)+".png";
 	imgCounter+=1 
 
 };
+
 
 function upgradeSword(num){
 	if(monsterPoints >= costs["sword"])

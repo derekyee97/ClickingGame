@@ -44,9 +44,7 @@ button:active {
 
 }
 .monster:hover {
-    cursor: url('./Images/Sword.cur'), auto;
-    background-color: #FF0000;
-   
+    cursor: url("./Images/Sword.cur"), auto;
 }
 
 .navbar {
@@ -122,11 +120,12 @@ button:active {
 }
 
 .monsterHolder img {
-    width:  500px;
-    height: 500px;
+    width:  600px;
+    height: 600px;
     object-fit: cover;
     background: transparent;
     object-fit: contain;
+
 }
 
 .gameCollumn{
@@ -135,11 +134,11 @@ button:active {
     background-size: cover;
     background-position:center;
     float :left;
-    width: 75%;
+    width: 1000px;
+    height: 750px;
 }
 .storeCollumn{
-    float: right;
-    with:25%;
+    float: left;
 }
 
 .updatesInfo{
@@ -155,4 +154,19 @@ button:active {
 
 .information{
     text-align: center;
+}
+.Bamb{
+	visibility: hidden;
+	width:  8000px;
+    height: 8000px;
+    object-fit: cover;
+    background: transparent;
+}
+#bombBtn {
+	border-style: solid;
+	border-color: red;
+}
+
+.monsterHealthInfo{
+	size: 20;
 }
