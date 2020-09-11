@@ -1,8 +1,4 @@
 body{
-    background-image: url("./Images/backgroundImage.gif");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position:center;
     padding-left: 100px;
 
 }
@@ -131,4 +127,32 @@ button:active {
     object-fit: cover;
     background: transparent;
     object-fit: contain;
+}
+
+.gameCollumn{
+    background-image: url("./Images/backgroundImage.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    float :left;
+    width: 75%;
+}
+.storeCollumn{
+    float: right;
+    with:25%;
+}
+
+.updatesInfo{
+    text-align: center;
+    padding: 20px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.information{
+    text-align: center;
 }
