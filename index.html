@@ -14,10 +14,11 @@
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content" id="myDropdown">
-              <button class="show_pickaxe" onClick="upgradeSword(1)"> Sword: MP <span class="sword_cost"></span></button><br></br> 
-              <button class="show_miner" onClick="hireWarrior(1)">warriors: MP <span class="warrior_cost"></span></button><br></br> 
-              <button class="show_miner" onClick="upgradeMinerPickaxe(1)">Dynamite: $<span class="miner_pickaxe_cost"></span> Will be updates in the releases</button><br></br> 
-              <button class="show_miner" onClick="upgradeWarriorWeapon(1)"> Warrior Weapon Upgrade: $<span class="miner_pickaxe_cost"></span></button><br></br> 
+              <button class="show_pickaxe" onClick="upgradeSword(1)"> Sword: MP <span class="sword_cost"></span></button><br>
+              <button class="show_miner" onClick="hireWarrior(1)">warriors: MP <span class="warrior_cost"></span></button><br> 
+              <button class="show_miner" onClick="buyBomb(1)">Bombs: MP <span class="bomb_cost"></span></button><br> 
+              <button class="show_miner" onClick="upgradeBombDamage(1)">Bomb Upgrade: MP <span class="bomb_upgrade_cost"></span></button><br> 
+              <button class="show_miner" onClick="upgradeWarriorWeapon(1)"> Warrior Weapon Upgrade: $<span class="miner_pickaxe_cost"></span></button><br> 
               <!-- <button class="show_miner" onClick="upgradeMinerPickaxe(1)">Bombs: $<span class="miner_pickaxe_cost"></span> Will be updates in the release</button>-->
             </div>
           </div> 
@@ -36,7 +37,9 @@
         Number of Warriors fighting along your side: <span class="warrior"></span> <br> 
         Warrior weapon level: <span class="warrior_weapon_level"></span> <br>
         Monster Health Points: <span class="monster_health"></span> <br>
-    	Monster Points: <span class="monster_points"></span> 
+    	Monster Points: <span class="monster_points"></span> <br>
+    	<button class="show_miner" onClick="releaseBombs(1)"> Release All Bombs: <span class="num_bombs"></span> </button> <br>
+    	Damage per bomb: <span class="bomb_damage_text"></span><br>
       </div>
     </div>
   </div>

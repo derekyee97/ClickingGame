@@ -9,21 +9,24 @@ var baseMonsterPoints=15
 var imgCounter=2
 var maxImages=6
 
+var bombDamage=100
 
-
-var resources = {"gold ":0,"pickaxe":1,"sword":1,"warrior":0,"warrior_weapon_level":0}
+var resources = {"gold ":0,"pickaxe":1,"sword":1,"warrior":0,"warrior_weapon_level":0,"num_bombs":0}
 var costs = {"pickaxe":15,
 	     "warrior":15,
 	     "miner_pickaxe":15,
 	 	 "sword":15,
-	 	 "warrior_weapon":15}
+	 	 "warrior_weapon":15,
+	 	 "bomb":15,
+	 	 "bomb_upgrade":15}
 var growthRate = {"pickaxe":1.25,
 		  "warrior":1.30,
 	     "miner_pickaxe":1.75,
 	 	 "monster_hp":1.25,
 	 	 "monsterPoint_rate":1.25,
 	 	 "sword":1.20,
-	 	 "warrior_weapon":1.30}
+	 	 "warrior_weapon":1.30,
+	 	 "bomb":1.40}
 
 var increments = [{"input":["warrior","miner_pickaxe"],
 		   "output":"gold"}]
@@ -108,7 +111,51 @@ function hireWarrior(num)
 		updateText()
 	}
 };
-
+function buyBomb(num)
+{
+	if(monsterPoints >= costs["bomb"])
+	{
+		
+		if(!resources["miner_pickaxe"])
+		{
+			resources["miner_pickaxe"]=1
+		}
+		resources["num_bombs"]+=num
+		monsterPoints-=costs["bomb"]
+		costs["bomb"] = Math.round(costs["bomb"]*growthRate["bomb"])
+		updateText()
+	}
+};
+function releaseBombs(num)
+{
+	if(resources["num_bombs"]==0)
+	{
+		
+		return 
+	}
+	else
+	{
+		
+		hurtMonsterWarrior(resources["num_bombs"]*bombDamage)
+		resources["num_bombs"]=0
+	}
+	
+};
+function upgradeBombDamage(num)
+{
+	if(monsterPoints >= costs["bomb_upgrade"])
+	{
+		
+		if(!resources["miner_pickaxe"])
+		{
+			resources["miner_pickaxe"]=1
+		}
+		bombDamage=Math.round(bombDamage*1.20)
+		monsterPoints-=costs["bomb_upgrade"]
+		costs["bomb_upgrade"] = Math.round(costs["bomb_upgrade"]*growthRate["bomb"])
+		updateText()
+	}
+};
 function upgradeWarriorWeapon(num)
 {
 	if(resources["warrior"]==0)
@@ -119,7 +166,7 @@ function upgradeWarriorWeapon(num)
 	{
 		resources["warrior_weapon_level"]+=num
 		monsterPoints-=costs["warrior_weapon"]
-		costs["warrior_weapon"]=Math.round(costs["warrior"]*growhRate["warrior_weapon"])
+		costs["warrior_weapon"]=Math.round(costs["warrior"]*growthRate["warrior_weapon"])
 	}
 	updateText()
 }
@@ -149,6 +196,14 @@ function updateText()
   	{
   		element.innerHTML = monsterPoints
   	}
+  	for (var element of document.getElementsByClassName("bomb_damage_text"))
+  	{
+  		element.innerHTML = bombDamage
+  	}
+
+
+
+
 };
 
 
@@ -176,8 +231,7 @@ window.setInterval(function()
 		   		hurtMonsterWarrior(resources["warrior"]*resources["warrior_weapon_level"])
 		   		
 		   }
-		   
-		   
+		   		   
 		    
 		}
 	}
