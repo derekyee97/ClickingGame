@@ -13,16 +13,16 @@ var bombDamage=100
 
 var resources = {"gold ":0,"pickaxe":1,"sword":1,"warrior":0,"warrior_weapon_level":0,"num_bombs":0}
 var costs = {"pickaxe":15,
-	     "warrior":15,
+	     "warrior":60,
 	     "miner_pickaxe":15,
 	 	 "sword":15,
-	 	 "warrior_weapon":15,
-	 	 "bomb":15,
-	 	 "bomb_upgrade":15}
+	 	 "warrior_weapon":40,
+	 	 "bomb":100,
+	 	 "bomb_upgrade":200}
 var growthRate = {"pickaxe":1.25,
 		  "warrior":1.30,
 	     "miner_pickaxe":1.75,
-	 	 "monster_hp":1.25,
+	 	 "monster_hp":1.35,
 	 	 "monsterPoint_rate":1.25,
 	 	 "sword":1.20,
 	 	 "warrior_weapon":1.30,
@@ -172,7 +172,7 @@ function upgradeWarriorWeapon(num)
 		costs["warrior_weapon"]=Math.round(costs["warrior"]*growthRate["warrior_weapon"])
 	}
 	updateText()
-}
+};
 function updateText()
 {
     
