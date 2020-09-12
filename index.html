@@ -10,39 +10,43 @@
 			<div class="Store">
 				<div class="navbar">
 					<div class="dropdown" float: right>
-						<button class="dropbtn" onclick="myFunction()">Store
+						<button class="dropbtn" onclick="myFunction()">Store <br> Monster Points: <span class="monster_points"></span>
 							<i class="fa fa-caret-down"></i>
 						</button>
 						<div class="dropdown-content" id="myDropdown">
-							<button class="show_pickaxe" onClick="upgradeSword(1)"> Sword: MP <span class="sword_cost"></span></button><br>
-							<button class="show_miner" onClick="hireWarrior(1)">warriors: MP <span class="warrior_cost"></span></button><br> 
-							<button class="show_miner" onClick="buyBomb(1)">Bombs: MP <span class="bomb_cost"></span></button><br> 
-							<button class="show_miner" onClick="upgradeBombDamage(1)">Bomb Upgrade: MP <span class="bomb_upgrade_cost"></span></button><br> 
-							<button class="show_miner" onClick="upgradeWarriorWeapon(1)"> Warrior Weapon Upgrade: $<span class="miner_pickaxe_cost"></span></button><br> 
+							<button class="show_pickaxe" onClick="upgradeSword(1)"> Sword: MP<span class="sword_cost"></span></button><br>
+							<button class="show_miner" onClick="hireWarrior(1)">Warriors: MP<span class="warrior_cost"></span></button><br>
+							<button class="show_miner" onClick="upgradeWarriorWeapon(1)"> Warrior Upgrade: MP<span class="miner_pickaxe_cost"></span></button><br> 
+							<button class="show_miner" onClick="buyBomb(1)">Bombs: MP<span class="bomb_cost"></span></button><br> 
+							<button class="show_miner" onClick="upgradeBombDamage(1)">Bomb Upgrade: MP<span class="bomb_upgrade_cost"></span></button><br> 
 							<!-- <button class="show_miner" onClick="upgradeMinerPickaxe(1)">Bombs: $<span class="miner_pickaxe_cost"></span> Will be updates in the release</button>-->
 						</div>
 					</div> 
 				</div>
-				<div class="gameCollumn">
-					<div class="monsterHolder">
-						<img src="./Images/monster1.png" alt="pic of monster" class="monster" id="imgChange" width="600" height="600" 
-						onCLick="hurtMonster(1)"> 
+				<br></br><br></br><br></br><br></br>
+				<br></br><br></br><br></br><br></br>
+
+				<div class="updatesInfo">
+					<div>
+						Sword Level: <span class="sword"></span> <br>
+						Number of Warriors fighting along your side: <span class="warrior"></span> <br> 
+						Warrior weapon level: <span class="warrior_weapon_level"></span> <br><br></br><br></br>
+						<button class="show_miner" id="bombBtn" onClick="releaseBombs(1)"> Release All Bombs: <span class="num_bombs"></span> </button> <br>
+						*Damage per bomb: <span class="bomb_damage_text"></span><br>
 					</div>
-					<img src="./Images/slime1.png" alt="pic of monster" class="monster" id="Bamb" width="2000" height="2000" style="visibility: hidden;"> 
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="updatesInfo">
-		<div class="monsterHealthInfo">
-			<h4 id="monsterHealthInfoLeft"> Monster Health Points: <span class="monster_health"></span> <br></h4>
-			<h4 id="monsterHealthInfo"> Monster Points: <span class="monster_points"></span> <br></h4>
-		<div>
-			Sword Level: <span class="sword"></span> <br>
-			Number of Warriors fighting along your side: <span class="warrior"></span> <br> 
-			Warrior weapon level: <span class="warrior_weapon_level"></span> <br>
-			<button class="show_miner" id="bombBtn" onClick="releaseBombs(1)"> Release All Bombs: <span class="num_bombs"></span> </button> <br>
-			*Damage per bomb: <span class="bomb_damage_text"></span><br>
+		<div class="gameCollumn">
+			<div class ="monsterHealthInfo">
+				<p id="monsterHealthInfoLeft"> Monster Health Points: <span class="monster_health"></span></p>
+				<p id="monsterHealthInfoRight"> Monster Points: <span class="monster_points"></span></p>
+			</div>
+			<div class="monsterHolder">
+				<img src="./Images/monster1.png" alt="pic of monster" class="monster" id="imgChange" width="600" height="600" 
+				onCLick="hurtMonster(1)"> 
+			</div>
+			<img src="./Images/slime1.png" alt="pic of monster" class="monster" id="Bamb" width="2000" height="2000" style="visibility: hidden;"> 
 		</div>
 	</div>
 </body>

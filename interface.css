@@ -45,6 +45,7 @@ button:active {
 }
 .monster:hover {
     cursor: url("./Images/Sword.cur"), auto;
+    background-color: #DC143C;
 }
 
 .navbar {
@@ -68,18 +69,19 @@ button:active {
 
 .dropdown .dropbtn {
   cursor: pointer;
-  font-size: 16px;  
+  font-size: 20px;  
   border: none;
   outline: none;
-  color: white;
+  color: black;
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
+  font-weight: bold;
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
-  background-color: red;
+  background-color: #DEB887;
 }
 
 .dropdown-content {
@@ -125,7 +127,6 @@ button:active {
     object-fit: cover;
     background: transparent;
     object-fit: contain;
-
 }
 
 .gameCollumn{
@@ -133,9 +134,8 @@ button:active {
     background-repeat: no-repeat;
     background-size: cover;
     background-position:center;
-    float :left;
-    width: 1000px;
-    height: 750px;
+    width: 1100px;
+    height: 760px;
 }
 .storeCollumn{
     float: left;
@@ -144,29 +144,37 @@ button:active {
 .updatesInfo{
     text-align: center;
     padding: 20px;
+    color: white;
+    font-weight: bold;
 }
 
 .row:after {
   content: "";
   display: table;
   clear: both;
+  column-count: 2;
 }
 
 .information{
     text-align: center;
 }
-.Bamb{
-	visibility: hidden;
-	width:  8000px;
-    height: 8000px;
-    object-fit: cover;
-    background: transparent;
-}
+
 #bombBtn {
+	background-image: url("./Images/bomb.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
 	border-style: solid;
 	border-color: red;
+	width: 250px;
+	height: 150px;
+	font-weight: bold;
 }
 
 .monsterHealthInfo{
-	size: 20;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 10px;
 }
