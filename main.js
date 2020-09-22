@@ -18,7 +18,7 @@ var costs = {"pickaxe":15,
 	 	 "sword":15,
 	 	 "warrior_weapon":40,
 	 	 "bomb":100,
-	 	 "bomb_upgrade":200}
+	 	 "bomb_upgrade":120}
 var growthRate = {"pickaxe":1.25,
 		  "warrior":1.30,
 	     "miner_pickaxe":1.75,
@@ -153,7 +153,7 @@ function upgradeBombDamage(num)
 		{
 			resources["miner_pickaxe"]=1
 		}
-		bombDamage=Math.round(bombDamage*1.20)
+		bombDamage=Math.round(bombDamage*1.30)
 		monsterPoints-=costs["bomb_upgrade"]
 		costs["bomb_upgrade"] = Math.round(costs["bomb_upgrade"]*growthRate["bomb"])
 		updateText()
